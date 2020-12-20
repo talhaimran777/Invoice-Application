@@ -8,5 +8,18 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         
+        
+        <ListBox x:Name="InvoiceList">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding InvoiceID}"/>
+                        <TextBlock Text="{Binding CustomerName}"/>
+                        <TextBlock Text="{Binding CustomerEmail}"/>
+                        <TextBlock Text="{Binding Shipped}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

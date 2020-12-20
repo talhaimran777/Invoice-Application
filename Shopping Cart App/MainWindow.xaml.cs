@@ -21,6 +21,10 @@ namespace Shopping_Cart_App
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        // Declaring an invoices list to hold all the invoices
+        public List<Invoice> invoices = new List<Invoice>();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +33,7 @@ namespace Shopping_Cart_App
             SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\ShoppingCart.mdf;Integrated Security=True");
             SqlCommand command = new SqlCommand
                (
-                   "SELECT CustomerName " +
+                   "SELECT InvoiceID, InvoiceDate, Shipped, CustomerName, CustomerAddress, CustomerEmail " +
                    "FROM Invoices", sqlCon);
 
             try
@@ -39,9 +43,17 @@ namespace Shopping_Cart_App
 
                 while (reader.Read())
                 {
-                    MessageBox.Show(reader["CustomerName"].ToString());
+                    //MessageBox.Show(reader["CustomerName"].ToString() + reader["CustomerEmail"].ToString());
+                    invoices.Add(new Invoice {
+                        InvoiceID = reader["InvoiceID"].ToString(),
+                        InvoiceDate = reader["InvoiceDate"].ToString(),
+                        Shipped = reader["Shipped"].ToString(),
+                        CustomerName = reader["CustomerName"].ToString(),
+                        CustomerEmail = reader["CustomerEmail"].ToString(),
+                    });
                 }
 
+                InvoiceList.ItemsSource = invoices;
                 reader.Close();
             }
             catch (SqlException ex)
@@ -53,5 +65,13 @@ namespace Shopping_Cart_App
                 sqlCon.Close();
             }
         }
+    }
+
+    public class Invoice {
+        public string InvoiceID { get; set;}
+        public string InvoiceDate { get; set; }
+        public string Shipped { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerEmail { get; set; }
     }
 }
