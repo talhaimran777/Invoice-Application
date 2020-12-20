@@ -1,0 +1,18 @@
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\bin\Debug\ShoppingCart.mdf
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\bin\Debug\ShoppingCart_log.ldf
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\bin\Debug\Shopping Cart App.exe.config
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\bin\Debug\Shopping Cart App.exe
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\bin\Debug\Shopping Cart App.pdb
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\Shopping Cart App.csprojAssemblyReference.cache
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\MainWindow.g.cs
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\App.g.cs
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\Shopping Cart App_Content.g.cs
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\Shopping Cart App_MarkupCompile.cache
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\Shopping Cart App_MarkupCompile.lref
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\MainWindow.baml
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\Shopping Cart App.g.resources
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\Shopping_Cart_App.Properties.Resources.resources
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\Shopping Cart App.csproj.GenerateResource.cache
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\Shopping Cart App.csproj.CoreCompileInputs.cache
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\Shopping Cart App.exe
+E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\obj\Debug\Shopping Cart App.pdb
