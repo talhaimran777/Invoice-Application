@@ -4,22 +4,66 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shopping_Cart_App"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d" FontSize="18"
+        Title="MainWindow" Height="450" Width="1200">
     <Grid>
-        
-        
-        <ListBox x:Name="InvoiceList">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="0,0,0,10" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Text="Invoices" FontSize="26"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+
+                <Label FontWeight="DemiBold" Grid.Column="0">InvoiceID</Label>
+                <Label FontWeight="DemiBold" Grid.Column="1">Name</Label>
+                <Label FontWeight="DemiBold" Grid.Column="2">Email</Label>
+                <Label FontWeight="DemiBold" Grid.Column="4">Shipped</Label>
+            </Grid>
+        </StackPanel>
+
+
+        <ListBox Grid.Row="3" Grid.Column ="1" x:Name="InvoiceList">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding InvoiceID}"/>
-                        <TextBlock Text="{Binding CustomerName}"/>
-                        <TextBlock Text="{Binding CustomerEmail}"/>
-                        <TextBlock Text="{Binding Shipped}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="140"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock FontSize="13" Grid.Column="0" Text="{Binding InvoiceID}"></TextBlock>
+                            <TextBlock FontSize="13" Grid.Column="1" Text="{Binding CustomerName}"/>
+                            <TextBlock FontSize="13" Grid.Column="2" Text="{Binding CustomerEmail}"/>
+                            <TextBlock FontSize="13" Grid.Column="4" Text="{Binding Shipped}"/>
+
+                        </Grid>
+
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
     </Grid>
 </Window>
