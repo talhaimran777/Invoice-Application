@@ -25,6 +25,9 @@ namespace Shopping_Cart_App
         // Declaring an invoices list to hold all the invoices
         public List<Invoice> invoices = new List<Invoice>();
 
+        // Declaring an invoice items list to hold all the invoices
+        public List<InvoiceItem> invoiceItems = new List<InvoiceItem>();
+
 
         public void onSelection(object sender, RoutedEventArgs e) {
             if (InvoiceList.SelectedItem != null) {
@@ -43,7 +46,53 @@ namespace Shopping_Cart_App
                 else {
                     McCheckBox.IsChecked = false;
                 }
-              
+
+
+                // Now getting invoice items from the invoice table 
+                // based on the InvoiceID in invoice items
+                SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\ShoppingCart.mdf;Integrated Security=True");
+                SqlCommand command = new SqlCommand
+                   (
+                       "SELECT ItemID, InvoiceID, ItemName, ItemDescription, ItemPrice, ItemQuantity " +
+                       "FROM InvoiceItems where InvoiceID='" + InvoiceIDBox.Text+"'", sqlCon);
+
+
+                try
+                {
+                    sqlCon.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        //MessageBox.Show(reader["CustomerName"].ToString() + reader["CustomerEmail"].ToString());
+                        //MessageBox.Show(reader["ItemID"].ToString() + reader["ItemDescription"].ToString());
+                        
+                        invoiceItems.Add(new InvoiceItem
+                        {
+                            ItemID = reader["ItemID"].ToString(),
+                            InvoiceID = reader["InvoiceID"].ToString(),
+                            ItemName = reader["ItemName"].ToString(),
+                            ItemDescription = reader["ItemDescription"].ToString(),
+                            ItemPrice = reader["ItemPrice"].ToString(),
+                            ItemQuantity = reader["ItemQuantity"].ToString(),
+                        });
+                    }
+
+                    ItemsList.ItemsSource = invoiceItems;
+                    reader.Close();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    sqlCon.Close();
+                }
+
+
+
+
             }
                 
                 
@@ -287,5 +336,17 @@ namespace Shopping_Cart_App
         public string CustomerEmail { get; set; }
 
         public string CustomerAddress { get; set; }
+    }
+
+
+    public class InvoiceItem
+    {
+        public string ItemID { get; set; }
+        public string InvoiceID { get; set; }
+        public string ItemName { get; set; }
+        public string ItemDescription { get; set; }
+        public string ItemPrice { get; set; }
+        public string ItemQuantity { get; set; }
+        public string Price { get; set; }
     }
 }

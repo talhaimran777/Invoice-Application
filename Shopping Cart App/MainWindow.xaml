@@ -23,6 +23,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
@@ -133,6 +134,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="280"/>
                     <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="140"/>
@@ -140,34 +142,44 @@
                 </Grid.ColumnDefinitions>
 
                 <Label FontWeight="DemiBold" Grid.Column="0">Item ID</Label>
-                <Label FontWeight="DemiBold" Grid.Column="1">Item Name</Label>
-                <Label FontWeight="DemiBold" Grid.Column="2">Item Description</Label>
-                <Label FontWeight="DemiBold" Grid.Column="3">Item Price</Label>
-                <Label FontWeight="DemiBold" Grid.Column="4">Item Quantity</Label>
-                <Label FontWeight="DemiBold" Grid.Column="5">Price</Label>
+                <Label FontWeight="DemiBold" Grid.Column="1">Invoice ID</Label>
+                <Label FontWeight="DemiBold" Grid.Column="2">Item Name</Label>
+                <Label FontWeight="DemiBold" Grid.Column="3">Item Description</Label>
+                <Label FontWeight="DemiBold" Grid.Column="4">Item Price</Label>
+                <Label FontWeight="DemiBold" Grid.Column="5">Item Quantity</Label>
+                <Label FontWeight="DemiBold" Grid.Column="6">Price</Label>
             </Grid>
         </StackPanel>
 
-        <!--<TextBlock Margin="0,0,0,10" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Text="Invoices" FontSize="26" Grid.ColumnSpan="2"/>
-        <TextBlock Margin="0,10,0,-25" FontWeight="Bold" Grid.Column="1" Grid.Row="4" Text="Invoice Record" FontSize="26" Grid.ColumnSpan="2"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,65,0,-92" Grid.Row="4" TextWrapping="Wrap" Text="Invoice ID" VerticalAlignment="Top" RenderTransformOrigin="-2.739,-0.021"/>
-        <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="97,64,0,-66" Grid.Row="4" TextWrapping="Wrap" Text="1008" VerticalAlignment="Top" Width="120"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="83,65,0,-68" Grid.Row="4" TextWrapping="Wrap" Text="Invoice Date" VerticalAlignment="Top" RenderTransformOrigin="-2.739,-0.021"/>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="193,64,0,-66" Grid.Row="4" TextWrapping="Wrap" Text="1008" VerticalAlignment="Top" Width="120"/>
-        <CheckBox Content="Shipped" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="365,63,0,-66" Grid.Row="4" VerticalAlignment="Top" Width="95"/>
-        <Button Content="Delete" Grid.Column="2" HorizontalAlignment="Left" Height="32" Margin="611,57,0,-68" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Delete" Grid.Column="2" HorizontalAlignment="Left" Height="32" Margin="611,57,0,-68" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
-        <Button Content="New" Grid.Column="2" HorizontalAlignment="Left" Height="32" Margin="712,57,0,-68" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Delete" Grid.Column="2" HorizontalAlignment="Left" Height="32" Margin="611,57,0,-68" Grid.Row="4" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Delete" Grid.Column="2" HorizontalAlignment="Left" Height="32" Margin="611,57,0,-68" Grid.Row="4" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.187,0.406"/>
-        <Button Content="Delete" Grid.Column="2" HorizontalAlignment="Left" Height="32" Margin="611,0,0,-68" Grid.Row="4" VerticalAlignment="Bottom" Width="75" RenderTransformOrigin="-0.187,0.406"/>
-        <Button Content="Delete" Grid.Column="2" HorizontalAlignment="Left" Margin="611,57,0,-68" Grid.Row="4" Width="75" RenderTransformOrigin="-0.187,0.406"/>
-        <Button Content="Save" Grid.Column="2" HorizontalAlignment="Left" Height="34" Margin="511,0,0,-69" Grid.Row="4" VerticalAlignment="Bottom" Width="75"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,97,0,-100" Grid.Row="12" TextWrapping="Wrap" Text="Customer Name" VerticalAlignment="Top" RenderTransformOrigin="-2.739,-0.021"/>
-        <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="151,96,0,-98" Grid.Row="12" TextWrapping="Wrap" Text="1008" VerticalAlignment="Top" Width="120"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="174,97,0,-100" Grid.Row="12" TextWrapping="Wrap" Text="Customer Email" VerticalAlignment="Top" RenderTransformOrigin="-2.739,-0.021"/>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="27" Margin="325,92,0,-98" Grid.Row="12" TextWrapping="Wrap" Text="devtal284@gmail.com" VerticalAlignment="Top" Width="296"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,164,0,-167" Grid.Row="12" TextWrapping="Wrap" Text="Customer Addresss" VerticalAlignment="Top" RenderTransformOrigin="-2.739,-0.021"/>
-        <TextBox Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="176,163,0,-167" Grid.Row="12" TextWrapping="Wrap" Text="E-57/2 Abu bakar Saddique Road" VerticalAlignment="Top" Width="347"/>-->
+
+        <ListBox Grid.Row="8" Grid.Column="1" x:Name="ItemsList">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="140"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock FontSize="13" Grid.Column="0" Text="{Binding ItemID}"></TextBlock>
+                            <TextBlock FontSize="13" Grid.Column="1" Text="{Binding InvoiceID}"/>
+                            <TextBlock FontSize="13" Grid.Column="2" Text="{Binding ItemName}"/>
+                            <TextBlock FontSize="13" Grid.Column="3" Text="{Binding ItemDescription}"/>
+                            <TextBlock FontSize="13" Grid.Column="4" Text="{Binding ItemPrice}"/>
+                            <TextBlock FontSize="13" Grid.Column="5" Text="{Binding ItemQuantity}"/>
+                            <TextBlock FontSize="13" Grid.Column="6" Text="{Binding Price}"/>
+
+                        </Grid>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
