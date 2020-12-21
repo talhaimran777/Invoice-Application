@@ -21,6 +21,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
@@ -84,7 +86,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Margin="0,0,0,10" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Text="Invoice Record" FontSize="26"/>
-            <StackPanel Margin="0 20" Grid.Column="0" Orientation="Horizontal">
+            <StackPanel Margin="0 20" Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
                 <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" FontSize="20" Text="InvoiceID"/>
                 <TextBox Width="150"/>
             </StackPanel>
@@ -104,7 +106,7 @@
                 <Button Width="60" Margin="10, 0">New</Button>
             </StackPanel>
 
-            <StackPanel Margin="0 20" Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+            <StackPanel Margin="0 20" Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
                 <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" FontSize="20" Text="Customer Name"/>
                 <TextBox Width="150"/>
             </StackPanel>
@@ -120,6 +122,8 @@
             </StackPanel>
 
         </Grid>
+
+        <TextBlock Margin="0,0,0,10" FontWeight="Bold" Grid.Column="1" Grid.Row="6" Text="Invoices" FontSize="26"/>
         <!--<TextBlock Margin="0,0,0,10" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Text="Invoices" FontSize="26" Grid.ColumnSpan="2"/>
         <TextBlock Margin="0,10,0,-25" FontWeight="Bold" Grid.Column="1" Grid.Row="4" Text="Invoice Record" FontSize="26" Grid.ColumnSpan="2"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,65,0,-92" Grid.Row="4" TextWrapping="Wrap" Text="Invoice ID" VerticalAlignment="Top" RenderTransformOrigin="-2.739,-0.021"/>
