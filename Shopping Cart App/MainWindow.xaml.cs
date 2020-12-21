@@ -55,12 +55,36 @@ namespace Shopping_Cart_App
 
             if (!ValidateInput(validated))
             {
-                MessageBox.Show("Cannot leave any field empty!");
+                MessageBox.Show("Cannot leave any of the fields empty!");
             }
-            else { 
+            else {
                 // Get data from the text boxes and write a query 
                 // to insert the data in the database.
+                SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\ShoppingCart.mdf;Integrated Security=True");
+                string shipped;
+                if (McCheckBox.IsChecked == true) {
+                    shipped = "True";
+                }
+                else {
+                    shipped = "False";
+                }
 
+                string query = "insert into Invoices (InvoiceID, InvoiceDate, Shipped, CustomerName, CustomerAddress, CustomerEmail) values ('"+InvoiceIDBox.Text+"','"+InvoiceDateBox.Text+ "','" + shipped + "','" + CustomerNameBox.Text + "','" + CustomerAddressBox.Text + "','" + CustomerEmailBox.Text + "')";
+                SqlCommand command = new SqlCommand(query, sqlCon);
+
+
+                try {
+                    sqlCon.Open();
+                    command.ExecuteNonQuery();
+                    UpdateListOfInvoices();
+                }
+                catch (SqlException ex) {
+                    MessageBox.Show(ex.Message);
+
+                }
+                finally {
+                    sqlCon.Close();
+                }
 
             };
         }
@@ -125,6 +149,11 @@ namespace Shopping_Cart_App
                         CustomerEmail = reader["CustomerEmail"].ToString(),
                     });
                 }
+
+                List<string> myList = new List<string>() { };
+                InvoiceList.ItemsSource = myList;
+                InvoiceList.ItemsSource = invoices;
+
                 reader.Close();
             }
             catch (SqlException ex)
@@ -233,13 +262,8 @@ namespace Shopping_Cart_App
                 try
                 {
                     sqlCon.Open();
-                    MessageBox.Show(invoices.Count.ToString());
                     command.ExecuteNonQuery();
                     UpdateListOfInvoices();
-                    MessageBox.Show(invoices.Count.ToString());
-                    List<string> myList = new List<string>() {};
-                    InvoiceList.ItemsSource = myList;
-                    InvoiceList.ItemsSource = invoices;
                 }
                 catch (SqlException ex)
                 {
