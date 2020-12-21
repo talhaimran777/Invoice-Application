@@ -34,7 +34,7 @@
                     <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="170"/>
                     <ColumnDefinition Width="280"/>
-                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="430"/>
                     <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
 
@@ -56,7 +56,7 @@
                                 <ColumnDefinition Width="140"/>
                                 <ColumnDefinition Width="170"/>
                                 <ColumnDefinition Width="280"/>
-                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="430"/>
                                 <ColumnDefinition Width="140"/>
                             </Grid.ColumnDefinitions>
 
@@ -92,7 +92,7 @@
             <TextBlock Margin="2,0,288,10" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Text="Invoice Record" FontSize="26" Grid.ColumnSpan="2"/>
             <StackPanel Margin="0 20" Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
                 <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="InvoiceID"/>
-                <TextBox  VerticalContentAlignment="Center" FontSize="13" x:Name="InvoiceIDBox" IsReadOnly="True" Width="150"/>
+                <TextBox  VerticalContentAlignment="Center" FontSize="13" x:Name="InvoiceIDBox" Width="150"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Margin="301,20,36,20" Orientation="Horizontal" Grid.ColumnSpan="2">
@@ -101,28 +101,28 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Margin="30,20,190,20" Grid.Column="2" Orientation="Horizontal" Grid.ColumnSpan="2">
-                <CheckBox Margin="30, 0, 0, 0" Content="Shipped"/>
+                <CheckBox Name="McCheckBox" Margin="30, 0, 0, 0" Content="Shipped"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Margin="203,20,152,20" Grid.Column="2" Orientation="Horizontal">
                 <Button Width="60" Margin="10, 0">Save</Button>
-                <Button Width="60" Margin="10, 0">Delete</Button>
-                <Button Width="60" Margin="10, 0">New</Button>
+                <Button Width="60" Margin="10, 0" Click="DeleteInvoiceRecord">Delete</Button>
+                <Button x:Name="InsertDataButton" Width="60" Margin="10, 0" Click="InsertDataToDB">Add</Button>
             </StackPanel>
 
             <StackPanel Margin="0 20" Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
                 <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="Customer Name"/>
-                <TextBox x:Name="CustomerNameBox" VerticalContentAlignment="Center" FontSize="13" Width="150"/>
+                <TextBox x:Name="CustomerNameBox" VerticalContentAlignment="Center" FontSize="13" Width="150" Margin="0,-8,0,0"/>
             </StackPanel>
 
             <StackPanel Margin="384,20,644,20" Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="3">
                 <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="Customer Email"/>
-                <TextBox x:Name="CustomerEmailBox" FontSize="13" Width="302"/>
+                <TextBox x:Name="CustomerEmailBox" VerticalContentAlignment="Center" FontSize="13" Width="302" Margin="0,-8,0,0"/>
             </StackPanel>
 
             <StackPanel Margin="0 20" Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
                 <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="Customer Address"/>
-                <TextBox x:Name="CustomerAddressBox" VerticalContentAlignment="Center" FontSize="13" Width="291"/>
+                <TextBox x:Name="CustomerAddressBox" VerticalContentAlignment="Center" FontSize="13" Width="291" Margin="0,-8,0,0"/>
             </StackPanel>
 
         </Grid>
