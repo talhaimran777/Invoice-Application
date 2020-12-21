@@ -34,12 +34,14 @@
                     <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="170"/>
                     <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="280"/>
                     <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
 
                 <Label FontWeight="DemiBold" Grid.Column="0">InvoiceID</Label>
                 <Label FontWeight="DemiBold" Grid.Column="1">Name</Label>
                 <Label FontWeight="DemiBold" Grid.Column="2">Email</Label>
+                <Label FontWeight="DemiBold" Grid.Column="3">Address</Label>
                 <Label FontWeight="DemiBold" Grid.Column="4">Shipped</Label>
             </Grid>
         </StackPanel>
@@ -54,12 +56,14 @@
                                 <ColumnDefinition Width="140"/>
                                 <ColumnDefinition Width="170"/>
                                 <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="280"/>
                                 <ColumnDefinition Width="140"/>
                             </Grid.ColumnDefinitions>
 
                             <TextBlock FontSize="13" Grid.Column="0" Text="{Binding InvoiceID}"></TextBlock>
                             <TextBlock FontSize="13" Grid.Column="1" Text="{Binding CustomerName}"/>
                             <TextBlock FontSize="13" Grid.Column="2" Text="{Binding CustomerEmail}"/>
+                            <TextBlock FontSize="13" Grid.Column="3" Text="{Binding CustomerAddress}"/>
                             <TextBlock FontSize="13" Grid.Column="4" Text="{Binding Shipped}"/>
 
                         </Grid>
@@ -85,40 +89,40 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Margin="-10,0,10,10" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Text="Invoice Record" FontSize="26"/>
+            <TextBlock Margin="2,0,288,10" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Text="Invoice Record" FontSize="26" Grid.ColumnSpan="2"/>
             <StackPanel Margin="0 20" Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" FontSize="20" Text="InvoiceID"/>
-                <TextBox Width="150"/>
+                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="InvoiceID"/>
+                <TextBox  VerticalContentAlignment="Center" FontSize="13" x:Name="InvoiceIDBox" IsReadOnly="True" Width="150"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Margin="0 20" Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" FontSize="20" Text="InvoiceDate"/>
-                <TextBox Width="150"/>
+            <StackPanel Grid.Row="1" Margin="301,20,36,20" Orientation="Horizontal" Grid.ColumnSpan="2">
+                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="InvoiceDate"/>
+                <TextBox VerticalContentAlignment="Center" FontSize="13" x:Name="InvoiceDateBox" Width="242"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Margin="30,20,190,20" Grid.Column="2" Orientation="Horizontal" Grid.ColumnSpan="2">
                 <CheckBox Margin="30, 0, 0, 0" Content="Shipped"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Margin="245,20,68,20" Grid.Column="2" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <StackPanel Grid.Row="1" Margin="203,20,152,20" Grid.Column="2" Orientation="Horizontal">
                 <Button Width="60" Margin="10, 0">Save</Button>
                 <Button Width="60" Margin="10, 0">Delete</Button>
                 <Button Width="60" Margin="10, 0">New</Button>
             </StackPanel>
 
             <StackPanel Margin="0 20" Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
-                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" FontSize="20" Text="Customer Name"/>
-                <TextBox Width="150"/>
+                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="Customer Name"/>
+                <TextBox x:Name="CustomerNameBox" VerticalContentAlignment="Center" FontSize="13" Width="150"/>
             </StackPanel>
 
-            <StackPanel Margin="108,20,170,20" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="2">
-                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" FontSize="20" Text="Customer Email"/>
-                <TextBox Width="150"/>
+            <StackPanel Margin="384,20,644,20" Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="3">
+                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="Customer Email"/>
+                <TextBox x:Name="CustomerEmailBox" FontSize="13" Width="302"/>
             </StackPanel>
 
             <StackPanel Margin="0 20" Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
-                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" FontSize="20" Text="Customer Address"/>
-                <TextBox Width="150"/>
+                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="Customer Address"/>
+                <TextBox x:Name="CustomerAddressBox" VerticalContentAlignment="Center" FontSize="13" Width="291"/>
             </StackPanel>
 
         </Grid>
@@ -143,7 +147,7 @@
                 <Label FontWeight="DemiBold" Grid.Column="5">Price</Label>
             </Grid>
         </StackPanel>
-        
+
         <!--<TextBlock Margin="0,0,0,10" FontWeight="Bold" Grid.Column="1" Grid.Row="1" Text="Invoices" FontSize="26" Grid.ColumnSpan="2"/>
         <TextBlock Margin="0,10,0,-25" FontWeight="Bold" Grid.Column="1" Grid.Row="4" Text="Invoice Record" FontSize="26" Grid.ColumnSpan="2"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,65,0,-92" Grid.Row="4" TextWrapping="Wrap" Text="Invoice ID" VerticalAlignment="Top" RenderTransformOrigin="-2.739,-0.021"/>

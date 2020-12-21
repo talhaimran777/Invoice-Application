@@ -28,8 +28,13 @@ namespace Shopping_Cart_App
 
         public void onSelection(object sender, RoutedEventArgs e) {
             if (InvoiceList.SelectedItem != null)
-                MessageBox.Show((InvoiceList.SelectedItem as Invoice).InvoiceID.ToString());
-                MessageBox.Show((InvoiceList.SelectedItem as Invoice).CustomerName.ToString());
+                InvoiceIDBox.Text = (InvoiceList.SelectedItem as Invoice).InvoiceID.ToString();
+                InvoiceDateBox.Text = (InvoiceList.SelectedItem as Invoice).InvoiceDate.ToString();
+                CustomerNameBox.Text = (InvoiceList.SelectedItem as Invoice).CustomerName.ToString();
+                CustomerEmailBox.Text = (InvoiceList.SelectedItem as Invoice).CustomerEmail.ToString();
+                CustomerAddressBox.Text = (InvoiceList.SelectedItem as Invoice).CustomerAddress.ToString();
+            //MessageBox.Show((InvoiceList.SelectedItem as Invoice).InvoiceID.ToString());
+            //MessageBox.Show((InvoiceList.SelectedItem as Invoice).CustomerName.ToString());
         }
         public MainWindow()
         {
@@ -55,6 +60,7 @@ namespace Shopping_Cart_App
                         InvoiceDate = reader["InvoiceDate"].ToString(),
                         Shipped = reader["Shipped"].ToString(),
                         CustomerName = reader["CustomerName"].ToString(),
+                        CustomerAddress = reader["CustomerAddress"].ToString(),
                         CustomerEmail = reader["CustomerEmail"].ToString(),
                     });
                 }
@@ -79,5 +85,7 @@ namespace Shopping_Cart_App
         public string Shipped { get; set; }
         public string CustomerName { get; set; }
         public string CustomerEmail { get; set; }
+
+        public string CustomerAddress { get; set; }
     }
 }
