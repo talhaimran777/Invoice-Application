@@ -115,7 +115,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="203,20,152,20" Grid.Column="2" Orientation="Horizontal">
-                    <Button Width="60" Margin="10, 0" Click="UpdateInvoiceData">Save</Button>
+                    <Button Width="60" Margin="10, 0" Click="UpdateInvoiceData">Update</Button>
                     <Button Width="60" Margin="10, 0" Click="DeleteInvoiceRecord">Delete</Button>
                     <Button x:Name="InsertDataButton" Width="60" Margin="10, 0" Click="InsertDataToDB">Add</Button>
                 </StackPanel>
@@ -199,8 +199,8 @@
 
                 <StackPanel Orientation="Horizontal" Margin="100, 0, 0, 0">
                     <Button Width="80" Margin="20, 0" Click="UpdateInvoiceItem" >Update</Button>
-                    <Button Width="80" Margin="20, 0">Delete</Button>
-                    <Button Width="80" Margin="20, 0">New</Button>
+                    <Button Width="80" Margin="20, 0" Click="DeleteInvoiceItem">Delete</Button>
+                    <Button Width="80" Margin="20, 0" Click="AddItemToList">Add</Button>
                 </StackPanel>
             </StackPanel>
 

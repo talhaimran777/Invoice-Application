@@ -582,6 +582,74 @@ namespace Shopping_Cart_App
                 }
             }
         }
+
+        private void DeleteInvoiceItem(object sender, RoutedEventArgs e)
+        {
+            if (ItemIDBox.Text == "")
+            {
+                MessageBox.Show("Select an item from the list in order to delete!");
+            }
+            else
+            {
+                SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\ShoppingCart.mdf;Integrated Security=True");
+                string query = "delete from InvoiceItems where ItemID='" + ItemIDBox.Text + "'";
+                SqlCommand command = new SqlCommand(query, sqlCon);
+
+
+                try
+                {
+                    sqlCon.Open();
+                    command.ExecuteNonQuery();
+                    updateInvoiceItemsData();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    sqlCon.Close();
+                }
+            }
+        }
+
+        private void AddItemToList(object sender, RoutedEventArgs e)
+        {
+            bool validated = true;
+
+            if (!ValidateInput(validated))
+            {
+                MessageBox.Show("Cannot leave any of the fields empty!");
+            }
+            else
+            {
+                // Get data from the text boxes and write a query 
+                // to insert the data in the database.
+                SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\ShoppingCart.mdf;Integrated Security=True");                
+
+                string query = "insert into InvoiceItems (ItemID, InvoiceID, ItemName, ItemDescription, ItemPrice, ItemQuantity) values ('" + ItemIDBox.Text + "','" + ItemInvoiceIDBox.Text + "','" + ItemNameBox.Text + "','" + ItemDescriptionBox.Text + "','" + ItemPriceBox.Text + "','" + ItemQuantityBox.Text + "')";
+                SqlCommand command = new SqlCommand(query, sqlCon);
+
+
+                try
+                {
+                    sqlCon.Open();
+                    command.ExecuteNonQuery();
+                    updateInvoiceItemsData();
+                    UpdateCalculationFields();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+                finally
+                {
+                    sqlCon.Close();
+                }
+
+            };
+        }
     }
 
     public class Invoice {
