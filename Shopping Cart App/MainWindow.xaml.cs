@@ -59,6 +59,7 @@ namespace Shopping_Cart_App
 
                 try
                 {
+                    invoiceItems.Clear();
                     sqlCon.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
@@ -78,6 +79,8 @@ namespace Shopping_Cart_App
                         });
                     }
 
+                    List<string> myList = new List<string>() { };
+                    ItemsList.ItemsSource = myList;
                     ItemsList.ItemsSource = invoiceItems;
                     reader.Close();
                 }
@@ -97,6 +100,7 @@ namespace Shopping_Cart_App
                 
                 
         }
+
 
         private void InsertDataToDB(object sender, RoutedEventArgs e)
         {
@@ -325,6 +329,60 @@ namespace Shopping_Cart_App
             
 
 
+        }
+
+        private void UpdateInvoiceData(object sender, RoutedEventArgs e)
+        {
+
+            if (InvoiceIDBox.Text == "")
+            {
+                MessageBox.Show("Please Choose an invoice to update!");
+            }
+            else {
+
+                bool validated = true;
+
+                if (!ValidateInput(validated))
+                {
+                    MessageBox.Show("Cannot leave any of the fields empty!");
+                }
+                else
+                {
+                    // Get data from the text boxes and write a query 
+                    // to insert the data in the database.
+                    SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\ShoppingCart.mdf;Integrated Security=True");
+                    string shipped;
+                    if (McCheckBox.IsChecked == true)
+                    {
+                        shipped = "True";
+                    }
+                    else
+                    {
+                        shipped = "False";
+                    }
+
+                    string query = "update Invoices set InvoiceDate = '" + InvoiceDateBox.Text + "', Shipped = '" + shipped + "', CustomerName = '" + CustomerNameBox.Text + "', CustomerAddress = '" + CustomerAddressBox.Text + "', CustomerEmail = '" + CustomerEmailBox.Text + "' where InvoiceID = '" + InvoiceIDBox.Text + "'";
+                    SqlCommand command = new SqlCommand(query, sqlCon);
+
+
+                    try
+                    {
+                        sqlCon.Open();
+                        command.ExecuteNonQuery();
+                        UpdateListOfInvoices();
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+                    finally
+                    {
+                        sqlCon.Close();
+                    }
+
+                };
+            }
         }
     }
 
