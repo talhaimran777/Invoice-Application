@@ -83,16 +83,21 @@ namespace Shopping_Cart_App
                     {
                         //MessageBox.Show(reader["CustomerName"].ToString() + reader["CustomerEmail"].ToString());
                         //MessageBox.Show(reader["ItemID"].ToString() + reader["ItemDescription"].ToString());
-                        
+
+                        Int64 quantity = Convert.ToInt64(Math.Floor(Convert.ToDouble(reader["ItemQuantity"].ToString())));
+                        Int64 price = Convert.ToInt64(Math.Floor(Convert.ToDouble(reader["ItemPrice"].ToString())));
+                       
+                        Int64 totalPrice = price * quantity;
                         invoiceItems.Add(new InvoiceItem
                         {
                             ItemID = reader["ItemID"].ToString(),
                             InvoiceID = reader["InvoiceID"].ToString(),
                             ItemName = reader["ItemName"].ToString(),
                             ItemDescription = reader["ItemDescription"].ToString(),
-                            ItemPrice = reader["ItemPrice"].ToString(),
+                            ItemPrice = price.ToString(),
                             ItemQuantity = reader["ItemQuantity"].ToString(),
-                        });
+                            Price = totalPrice.ToString()
+                        }) ;
                     }
 
                     List<string> myList = new List<string>() { };
