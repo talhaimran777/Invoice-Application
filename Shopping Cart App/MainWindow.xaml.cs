@@ -24,7 +24,13 @@ namespace Shopping_Cart_App
 
         // Declaring an invoices list to hold all the invoices
         public List<Invoice> invoices = new List<Invoice>();
-        
+
+
+        public void onSelection(object sender, RoutedEventArgs e) {
+            if (InvoiceList.SelectedItem != null)
+                MessageBox.Show((InvoiceList.SelectedItem as Invoice).InvoiceID.ToString());
+                MessageBox.Show((InvoiceList.SelectedItem as Invoice).CustomerName.ToString());
+        }
         public MainWindow()
         {
             InitializeComponent();
