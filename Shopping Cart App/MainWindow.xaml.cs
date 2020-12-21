@@ -34,19 +34,119 @@ namespace Shopping_Cart_App
         {
             if (ItemsList.SelectedItem != null)
             {
+                Int64 subtotal = 0;
+                Int64 PST = 0;
+                Int64 GST = 0;
+
+                for (int i = 0; i < invoiceItems.Count; i++) {
+
+                    subtotal += Convert.ToInt64(Math.Floor(Convert.ToDouble(invoiceItems[i].Price)));                    
+                }
+
+                PST =(subtotal * 6) / 100;
+                GST = (subtotal * 5) / 100;
+
                 ItemIDBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemID.ToString();
                 ItemNameBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemName.ToString();
                 ItemDescriptionBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemDescription.ToString();
                 ItemPriceBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemPrice.ToString();
                 ItemQuantityBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemQuantity.ToString();
-                //ItemIDBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemID.ToString();
+                ItemInvoiceIDBox.Text = (ItemsList.SelectedItem as InvoiceItem).InvoiceID.ToString();
+                SubtotalBox.Text = subtotal.ToString();
+                PSTBox.Text = PST.ToString();
+                GSTBox.Text = GST.ToString();
+                TotalAmountBox.Text = subtotal.ToString();
             }
 
         }
 
+        public void UpdateCalculationFields() {
+            Int64 subtotal = 0;
+            Int64 PST = 0;
+            Int64 GST = 0;
+
+            for (int i = 0; i < invoiceItems.Count; i++)
+            {
+
+                subtotal += Convert.ToInt64(Math.Floor(Convert.ToDouble(invoiceItems[i].Price)));
+            }
+
+            PST = (subtotal * 6) / 100;
+            GST = (subtotal * 5) / 100;
+
+            SubtotalBox.Text = subtotal.ToString();
+            PSTBox.Text = PST.ToString();
+            GSTBox.Text = GST.ToString();
+            TotalAmountBox.Text = subtotal.ToString();
+
+        }
+
+
+        public void updateInvoiceItemsData() {
+            SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\ShoppingCart.mdf;Integrated Security=True");
+            SqlCommand command = new SqlCommand
+               (
+                   "SELECT ItemID, InvoiceID, ItemName, ItemDescription, ItemPrice, ItemQuantity " +
+                   "FROM InvoiceItems where InvoiceID='" + InvoiceIDBox.Text + "'", sqlCon);
+
+
+            try
+            {
+                invoiceItems.Clear();
+                sqlCon.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    //MessageBox.Show(reader["CustomerName"].ToString() + reader["CustomerEmail"].ToString());
+                    //MessageBox.Show(reader["ItemID"].ToString() + reader["ItemDescription"].ToString());
+
+                    Int64 quantity = Convert.ToInt64(Math.Floor(Convert.ToDouble(reader["ItemQuantity"].ToString())));
+                    Int64 price = Convert.ToInt64(Math.Floor(Convert.ToDouble(reader["ItemPrice"].ToString())));
+
+                    Int64 totalPrice = price * quantity;
+                    invoiceItems.Add(new InvoiceItem
+                    {
+                        ItemID = reader["ItemID"].ToString(),
+                        InvoiceID = reader["InvoiceID"].ToString(),
+                        ItemName = reader["ItemName"].ToString(),
+                        ItemDescription = reader["ItemDescription"].ToString(),
+                        ItemPrice = price.ToString(),
+                        ItemQuantity = reader["ItemQuantity"].ToString(),
+                        Price = totalPrice.ToString()
+                    });
+                }
+
+                List<string> myList = new List<string>() { };
+                ItemsList.ItemsSource = myList;
+                ItemsList.ItemsSource = invoiceItems;
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                sqlCon.Close();
+            }
+    }
 
         public void onSelection(object sender, RoutedEventArgs e) {
             if (InvoiceList.SelectedItem != null) {
+
+                // Emptying invoice item record fields first
+                ItemIDBox.Text =  "";
+                ItemNameBox.Text = "";
+                ItemDescriptionBox.Text = "";
+                ItemPriceBox.Text = "";
+                ItemQuantityBox.Text = "";
+                ItemInvoiceIDBox.Text = "";
+                SubtotalBox.Text = "";
+                PSTBox.Text = "";
+                GSTBox.Text = "";
+                TotalAmountBox.Text = "";
+
                 InvoiceIDBox.Text = (InvoiceList.SelectedItem as Invoice).InvoiceID.ToString();
                 InvoiceDateBox.Text = (InvoiceList.SelectedItem as Invoice).InvoiceDate.ToString();
                 CustomerNameBox.Text = (InvoiceList.SelectedItem as Invoice).CustomerName.ToString();
@@ -66,56 +166,57 @@ namespace Shopping_Cart_App
 
                 // Now getting invoice items from the invoice table 
                 // based on the InvoiceID in invoice items
-                SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\ShoppingCart.mdf;Integrated Security=True");
-                SqlCommand command = new SqlCommand
-                   (
-                       "SELECT ItemID, InvoiceID, ItemName, ItemDescription, ItemPrice, ItemQuantity " +
-                       "FROM InvoiceItems where InvoiceID='" + InvoiceIDBox.Text+"'", sqlCon);
+
+                updateInvoiceItemsData();
 
 
-                try
-                {
-                    invoiceItems.Clear();
-                    sqlCon.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+                //SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\ShoppingCart.mdf;Integrated Security=True");
+                //SqlCommand command = new SqlCommand
+                //   (
+                //       "SELECT ItemID, InvoiceID, ItemName, ItemDescription, ItemPrice, ItemQuantity " +
+                //       "FROM InvoiceItems where InvoiceID='" + InvoiceIDBox.Text+"'", sqlCon);
 
-                    while (reader.Read())
-                    {
-                        //MessageBox.Show(reader["CustomerName"].ToString() + reader["CustomerEmail"].ToString());
-                        //MessageBox.Show(reader["ItemID"].ToString() + reader["ItemDescription"].ToString());
 
-                        Int64 quantity = Convert.ToInt64(Math.Floor(Convert.ToDouble(reader["ItemQuantity"].ToString())));
-                        Int64 price = Convert.ToInt64(Math.Floor(Convert.ToDouble(reader["ItemPrice"].ToString())));
+                //try
+                //{
+                //    invoiceItems.Clear();
+                //    sqlCon.Open();
+                //    SqlDataReader reader = command.ExecuteReader();
+
+                //    while (reader.Read())
+                //    {
+                //        //MessageBox.Show(reader["CustomerName"].ToString() + reader["CustomerEmail"].ToString());
+                //        //MessageBox.Show(reader["ItemID"].ToString() + reader["ItemDescription"].ToString());
+
+                //        Int64 quantity = Convert.ToInt64(Math.Floor(Convert.ToDouble(reader["ItemQuantity"].ToString())));
+                //        Int64 price = Convert.ToInt64(Math.Floor(Convert.ToDouble(reader["ItemPrice"].ToString())));
                        
-                        Int64 totalPrice = price * quantity;
-                        invoiceItems.Add(new InvoiceItem
-                        {
-                            ItemID = reader["ItemID"].ToString(),
-                            InvoiceID = reader["InvoiceID"].ToString(),
-                            ItemName = reader["ItemName"].ToString(),
-                            ItemDescription = reader["ItemDescription"].ToString(),
-                            ItemPrice = price.ToString(),
-                            ItemQuantity = reader["ItemQuantity"].ToString(),
-                            Price = totalPrice.ToString()
-                        }) ;
-                    }
+                //        Int64 totalPrice = price * quantity;
+                //        invoiceItems.Add(new InvoiceItem
+                //        {
+                //            ItemID = reader["ItemID"].ToString(),
+                //            InvoiceID = reader["InvoiceID"].ToString(),
+                //            ItemName = reader["ItemName"].ToString(),
+                //            ItemDescription = reader["ItemDescription"].ToString(),
+                //            ItemPrice = price.ToString(),
+                //            ItemQuantity = reader["ItemQuantity"].ToString(),
+                //            Price = totalPrice.ToString()
+                //        }) ;
+                //    }
 
-                    List<string> myList = new List<string>() { };
-                    ItemsList.ItemsSource = myList;
-                    ItemsList.ItemsSource = invoiceItems;
-                    reader.Close();
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    sqlCon.Close();
-                }
-
-
-
+                //    List<string> myList = new List<string>() { };
+                //    ItemsList.ItemsSource = myList;
+                //    ItemsList.ItemsSource = invoiceItems;
+                //    reader.Close();
+                //}
+                //catch (SqlException ex)
+                //{
+                //    MessageBox.Show(ex.Message);
+                //}
+                //finally
+                //{
+                //    sqlCon.Close();
+                //}
 
             }
                 
@@ -185,6 +286,40 @@ namespace Shopping_Cart_App
             }
 
             if (InvoiceDateBox.Text == "")
+            {
+                validated = false;
+            }
+
+            return validated;
+
+        }
+
+
+
+
+        public bool ValidateInputForInvoiceItem(bool validated)
+        {
+            if (ItemIDBox.Text == "")
+            {
+                validated = false;
+            }
+
+            if (ItemNameBox.Text == "")
+            {
+                validated = false;
+            }
+
+            if (ItemDescriptionBox.Text == "")
+            {
+                validated = false;
+            }
+
+            if (ItemQuantityBox.Text == "")
+            {
+                validated = false;
+            }
+
+            if (ItemPriceBox.Text == "")
             {
                 validated = false;
             }
@@ -403,6 +538,48 @@ namespace Shopping_Cart_App
                     }
 
                 };
+            }
+        }
+
+        private void UpdateInvoiceItem(object sender, RoutedEventArgs e)
+        {
+            if (InvoiceIDBox.Text == "")
+            {
+                MessageBox.Show("Please Choose an invoice to update!");
+            }
+            else {
+                bool validated = true;
+
+                if (!ValidateInputForInvoiceItem(validated))
+                {
+                    MessageBox.Show("Cannot leave any of the fields empty!");
+                }
+                else {
+
+                    SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Visual Studio Apps\Shopping Cart App\Shopping Cart App\ShoppingCart.mdf;Integrated Security=True");
+                    string query = "update InvoiceItems set ItemName = '" + ItemNameBox.Text + "', ItemDescription = '" + ItemDescriptionBox.Text + "', ItemQuantity = '" + ItemQuantityBox.Text + "', ItemPrice = '" + ItemPriceBox.Text + "', InvoiceID = '" + ItemInvoiceIDBox.Text + "' where ItemID = '" + ItemIDBox.Text + "'";
+                    SqlCommand command = new SqlCommand(query, sqlCon);
+
+
+                    try
+                    {
+                        
+                        sqlCon.Open();
+                        command.ExecuteNonQuery();
+                        updateInvoiceItemsData();
+                        UpdateCalculationFields();
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+                    finally
+                    {
+                        sqlCon.Close();
+                    }
+
+                }
             }
         }
     }

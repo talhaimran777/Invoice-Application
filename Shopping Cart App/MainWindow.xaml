@@ -198,7 +198,7 @@
                 <TextBox x:Name="ItemIDBox" VerticalContentAlignment="Center" FontSize="13" Width="150" />
 
                 <StackPanel Orientation="Horizontal" Margin="100, 0, 0, 0">
-                    <Button Width="80" Margin="20, 0" >Save</Button>
+                    <Button Width="80" Margin="20, 0" Click="UpdateInvoiceItem" >Update</Button>
                     <Button Width="80" Margin="20, 0">Delete</Button>
                     <Button Width="80" Margin="20, 0">New</Button>
                 </StackPanel>
@@ -214,6 +214,11 @@
             <StackPanel Margin ="0, 20" Grid.Column="1" Grid.Row="12" Orientation="Horizontal">
                 <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="Item Price"/>
                 <TextBox x:Name="ItemPriceBox" VerticalContentAlignment="Center" FontSize="13" Width="150" />
+
+                <TextBlock Margin="40, 0, 30, 0" FontWeight="DemiBold" Text="InvoiceID"/>
+                <TextBox x:Name="ItemInvoiceIDBox" VerticalContentAlignment="Center" FontSize="13" Width="150" />
+                
+                
             </StackPanel>
 
             <StackPanel Margin ="0, 20" Grid.Column="1" Grid.Row="13" Orientation="Horizontal">
@@ -221,13 +226,13 @@
                 <TextBox x:Name="ItemQuantityBox" VerticalContentAlignment="Center" FontSize="13" Width="150" />
             </StackPanel>
             <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="811,0,0,43" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="24"><Run Text="Subtotal"/><LineBreak/><Run/></TextBlock>
-            <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="898,3,0,0" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="SubtotalBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="898,3,0,0" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="811,47,0,0" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Text="PST (6%)" Grid.RowSpan="2"/>
-            <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="898,48,0,0" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.RowSpan="2"/>
+            <TextBox x:Name="PSTBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="898,48,0,0" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.RowSpan="2"/>
             <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="811,19,0,0" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Text="GST( 5% )"/>
-            <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="898,20,0,0" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="GSTBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="898,20,0,0" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="811,57,0,0" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Text="Total" Grid.RowSpan="2"/>
-            <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="898,58,0,0" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.RowSpan="2"/>
+            <TextBox x:Name="TotalAmountBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="898,58,0,0" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.RowSpan="2"/>
         </Grid>
     </ScrollViewer>
 </Window>
