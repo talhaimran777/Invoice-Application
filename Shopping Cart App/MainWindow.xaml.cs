@@ -29,6 +29,22 @@ namespace Shopping_Cart_App
         public List<InvoiceItem> invoiceItems = new List<InvoiceItem>();
 
 
+
+        public void onSelectionItems(object sender, RoutedEventArgs e)
+        {
+            if (ItemsList.SelectedItem != null)
+            {
+                ItemIDBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemID.ToString();
+                ItemNameBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemName.ToString();
+                ItemDescriptionBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemDescription.ToString();
+                ItemPriceBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemPrice.ToString();
+                ItemQuantityBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemQuantity.ToString();
+                //ItemIDBox.Text = (ItemsList.SelectedItem as InvoiceItem).ItemID.ToString();
+            }
+
+        }
+
+
         public void onSelection(object sender, RoutedEventArgs e) {
             if (InvoiceList.SelectedItem != null) {
                 InvoiceIDBox.Text = (InvoiceList.SelectedItem as Invoice).InvoiceID.ToString();

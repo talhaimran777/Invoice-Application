@@ -161,7 +161,7 @@
             </StackPanel>
 
 
-            <ListBox Grid.Row="8" Grid.Column="1" x:Name="ItemsList" Margin="0,0,0,20">
+            <ListBox Grid.Row="8" Grid.Column="1" x:Name="ItemsList" Margin="0,0,0,20" SelectionChanged="onSelectionItems">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -205,6 +205,8 @@
             </StackPanel>
 
             <StackPanel Margin ="0, 20" Grid.Column="1" Grid.Row="11" Orientation="Horizontal">
+                <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="Item Name"/>
+                <TextBox x:Name="ItemNameBox" VerticalContentAlignment="Center" FontSize="13" Width="140" Margin="0, 0, 40, 0"/>
                 <TextBlock Margin="0, 0, 20, 0" FontWeight="DemiBold" Text="Item Description"/>
                 <TextBox x:Name="ItemDescriptionBox" VerticalContentAlignment="Center" FontSize="13" Width="280" />
             </StackPanel>
